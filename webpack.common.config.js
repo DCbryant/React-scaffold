@@ -3,12 +3,14 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const webpack = require('webpack');
 
 commonConfig = {
+    //页面入口文件配置
     entry: {
         app: [
             path.join(__dirname, 'src/index.js')
         ],
         vendor: ['react', 'react-router-dom', 'redux', 'react-dom', 'react-redux']
     },
+    //入口文件输出配置
     output: {
         path: path.join(__dirname, './dist'),
         filename: '[name].[chunkhash].js',
@@ -16,6 +18,7 @@ commonConfig = {
         publicPath: "/"
     },
     module: {
+        //loader配置
         rules: [{
             test: /\.js$/,
             use: ['babel-loader?cacheDirectory=true'],
@@ -30,6 +33,7 @@ commonConfig = {
             }]
         }]
     },
+    //插件配置
     plugins: [
         new HtmlWebpackPlugin({
             filename: 'index.html',
@@ -43,7 +47,7 @@ commonConfig = {
             name: 'runtime'
         })
     ],
-
+    //其他解决方案
     resolve: {
         alias: {
             pages: path.join(__dirname, 'src/pages'),
